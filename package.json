@@ -2,15 +2,23 @@
   "name": "economist-clone",
   "version": "0.1.0",
   "private": true,
+  "browser": {
+    "child_process": false
+  },
   "scripts": {
     "dev": "next dev -p 1233",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "async": "^3.2.0",
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.21",
     "mongoose": "^5.12.8",
     "next": "10.2.0",
+    "puppeteer": "^9.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.32.12"

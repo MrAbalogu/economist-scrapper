@@ -1,11 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-import dbConnect from '../../utils/dbConnect'
-import User from '../../../models/User.tsc'
+import dbConnect from '../../../utils/dbConnect'
+import User from '../../../models/User'
 
 dbConnect()
 
-export default async  (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req, res) => {
   const { method }  = req
 
   switch(method) {
