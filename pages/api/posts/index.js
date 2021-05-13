@@ -1,6 +1,5 @@
 import dbConnect from '../../../utils/dbConnect'
 import Post from '../../../models/Post'
-import Post from '../../../models/Post'
 import { verifyCookie } from '../../../controllers/AuthController'
 
 dbConnect()
