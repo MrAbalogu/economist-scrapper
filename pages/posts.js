@@ -1,18 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import httpGetRequest from '../utils/httpRequests'
 import Post from '../components/Post'
 import styles from '../styles/Home.module.css'
 
 export default function Posts() {
-  const headline = "Latest News",
-        title =  "My dummy title about trading crypto..",
-        loop = [1,2,3,4,5,6,7,8,9,10],
-        url = "https://nextjs.org/docs"
+  const [posts, setPosts] = useState([]),
+        headline = "Post"
 
   function fetchPosts() {
     httpGetRequest('/api/posts/scrapper')
-      .then(() => {
-        console.log('fetched from api...')
+      .then((response) => {
+        setPosts(response.data.data)
       })
       .catch((err) => {
         console.error(err)
@@ -32,12 +30,12 @@ export default function Posts() {
 
         <div className={styles.grid}>
           {
-            loop.map((i) => (
+            posts.map((post) => (
               <Post
                 headline={headline}
-                title={title}
-                url={url}
-                key={i}
+                title={post.title.substring(0,30)}
+                url={post.url}
+                key={post.id}
               ></Post>
             ))
           }

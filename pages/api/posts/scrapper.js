@@ -1,5 +1,8 @@
+import dbConnect from '../../../utils/dbConnect'
 import Scrapper from '../../../services/scrapper'
-import Post from '../../../models/Post'
+import { parsePosts } from '../../../controllers/postsController'
+
+dbConnect()
 
 export default async (req, res) => {
   const { method }  = req
@@ -7,9 +10,8 @@ export default async (req, res) => {
   switch(method) {
     case "GET":
       try {
-        const posts = Scrapper()
-
-        console.log('scrapper', posts)
+        const postsFromScrapper = await Scrapper()
+        const posts = await parsePosts(postsFromScrapper)
 
         res.status(200).json({ success: true, data: posts })
       } catch(error) {

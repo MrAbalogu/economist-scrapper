@@ -1,47 +1,43 @@
+require('events').EventEmitter.prototype._maxListeners = 100;
+
 import puppeteer from 'puppeteer'
 import constants from '../utils/constants'
 
-const scrapePosts = async (page) => {
-  try {
-    await page.evaluate( async () => {
-      let htmlPosts = [],
-          posts = []
+async function Scrapper(url = constants.baseUrl) {
+  let posts = [],
+      fetchedPosts = []
 
+  const browser = await puppeteer.launch({ headless: true })
+  const page = await browser.newPage()
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36')
+  await page.goto(url, {waitUntil: 'domcontentloaded'})
+  
+  fetchedPosts = await page.evaluate(() => {
+    try {
+      let htmlPosts = [],
+      pagePosts = []
+  
       document.querySelectorAll('h3').forEach((el) => {
         htmlPosts.push(el)
       })
 
       htmlPosts.forEach((el) => {
         let post = {}
-        const url = window.location.href.slice(0, -1)
 
         post.title = el.innerText
-        post.url = url + el.innerHTML.match(/href="([^"]*)/)[1]
+        post.url = el.innerHTML
 
-        posts.push(post)
+        pagePosts.push(post)
       })
+  
+      return pagePosts
+    }
+    catch(error) {
+      console.error('error', error)
+    }
+  })
 
-      console.log('whats happening?.. chromium', posts)
-
-      return Promise.resolve(posts)
-    })
-  }
-  catch(err) {
-    console.log('error', err)
-  }
-}
-
-async function Scrapper(url = constants.baseUrl) {
-  let res
-  let posts = []
-
-  const browser = await puppeteer.launch({ headless: false })
-  const page = await browser.newPage()
-  await page.goto(url, {waitUntil: 'domcontentloaded'})
-
-  posts = await scrapePosts(page)
-
-  return posts
+  return fetchedPosts
 }
 
 export default Scrapper

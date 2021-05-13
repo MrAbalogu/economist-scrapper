@@ -16,6 +16,8 @@ async function httpGetRequest(url, context) {
     context.res?.end()
     return
   }
+
+  return res
 }
 
 export default httpGetRequest

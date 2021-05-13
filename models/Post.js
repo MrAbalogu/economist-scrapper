@@ -4,6 +4,7 @@ const mongoose         = require('mongoose'),
 const PostSchema = new Schema({
   title: {
     type: String,
+    unique: true,
     required: [true, 'A Title must exist']
   },
   section: {
@@ -13,11 +14,6 @@ const PostSchema = new Schema({
     type: String,
     unique: true
   }
-})
-
-PostSchema.pre('save', (next) => {
-  let post = this
-  
 })
 
 module.exports = mongoose.models.Post || mongoose.model('Post', PostSchema)
