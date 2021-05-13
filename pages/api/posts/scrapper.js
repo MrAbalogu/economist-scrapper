@@ -1,7 +1,7 @@
-import dbConnect from '../../../utils/dbConnect'
-import Scrapper from '../../../services/scrapper'
-import { parsePosts } from '../../../controllers/PostsController'
-import { verifyCookie } from '../../../controllers/AuthController'
+import dbConnect from '../../../utils/dbConnect.js'
+import Scrapper from '../../../services/scrapper.js'
+import { parsePosts } from '../../../controllers/PostsController.js'
+import { verifyCookie } from '../../../controllers/AuthController.js'
 
 dbConnect()
 

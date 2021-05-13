@@ -1,6 +1,6 @@
-import dbConnect from '../../../utils/dbConnect'
-import Post from '../../../models/Post'
-import { verifyCookie } from '../../../controllers/AuthController'
+import dbConnect from '../../../utils/dbConnect.js'
+import Post from '../../../models/Post.js'
+import { verifyCookie } from '../../../controllers/AuthController.js'
 
 dbConnect()
 
