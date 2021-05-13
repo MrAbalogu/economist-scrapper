@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   }
 })
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function(next) {
   let user = this
 
   if (!user.isModified('password')) return next()
@@ -37,6 +37,7 @@ UserSchema.pre('save', (next) => {
 })
 
 UserSchema.methods.comparePassword = (userPassword, cb) => {
+  console.log('this user', this)
   bcrypt.compare(userPassword, this.password, function(err, isMatch) {
       if (err) return cb(err)
       cb(null, isMatch)

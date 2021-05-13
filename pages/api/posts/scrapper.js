@@ -1,6 +1,7 @@
 import dbConnect from '../../../utils/dbConnect'
 import Scrapper from '../../../services/scrapper'
-import { parsePosts } from '../../../controllers/postsController'
+import { parsePosts } from '../../../controllers/PostsController'
+import { verifyCookie } from '../../../controllers/AuthController'
 
 dbConnect()
 
@@ -10,6 +11,13 @@ export default async (req, res) => {
   switch(method) {
     case "GET":
       try {
+        const authenticated = await verifyCookie(req.cookies.auth)
+
+        if(!authenticated) {
+          res.status(401).json({ success: false, error: 'You are not authenticated' })
+          return
+        }
+
         const postsFromScrapper = await Scrapper()
         const posts = await parsePosts(postsFromScrapper)
 

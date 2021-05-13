@@ -1,5 +1,7 @@
 import dbConnect from '../../../utils/dbConnect'
 import Post from '../../../models/Post'
+import Post from '../../../models/Post'
+import { verifyCookie } from '../../../controllers/AuthController'
 
 dbConnect()
 
@@ -9,6 +11,12 @@ export default async (req, res) => {
   switch(method) {
     case "GET":
       try {
+        const authenticated = await verifyCookie(req.cookies.auth)
+
+        if(!authenticated) {
+          res.status(401).json({ success: false, error: 'You are not authenticated' })
+        }
+
         const posts = await Post.find({})
 
         res.status(200).json({ success: true, data: posts })
@@ -18,7 +26,6 @@ export default async (req, res) => {
       break
     case "POST":
       try {
-        console.log('req', req.body)
         const post = await Post.create(req.body) 
 
         res.status(201).json({ success: true, data: post })

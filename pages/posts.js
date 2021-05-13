@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import httpGetRequest from '../utils/httpRequests'
+import axios from 'axios'
+import Router from 'next/router'
 import Post from '../components/Post'
 import styles from '../styles/Home.module.css'
 
@@ -8,18 +9,24 @@ export default function Posts() {
         headline = "Post"
 
   function fetchPosts() {
-    httpGetRequest('/api/posts/scrapper')
+    axios.get('/api/posts/scrapper', {withCredentials: true})
       .then((response) => {
         setPosts(response.data.data)
       })
       .catch((err) => {
         console.error(err)
+
+        if(err.request.status === 401) Router.push('/auth')
       })
   }
 
   useEffect(() => {
     fetchPosts()
-  });
+    const id = setInterval(() => fetchPosts(), 60000)
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
