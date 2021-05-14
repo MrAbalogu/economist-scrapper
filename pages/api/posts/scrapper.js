@@ -1,6 +1,6 @@
 import dbConnect from '@/utils/dbConnect.js'
 import Scrapper from '@/services/scrapper.js'
-import { parsePosts } from '@/controllers/PostsController.js'
+import { parsePosts } from '@/controllers/PostController.js'
 import { verifyCookie } from '@/controllers/AuthController.js'
 
 dbConnect()
