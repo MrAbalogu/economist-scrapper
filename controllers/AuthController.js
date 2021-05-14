@@ -1,6 +1,6 @@
 import { verify, sign } from 'jsonwebtoken'
 import cookie from 'cookie'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import Constants from '@/utils/constants'
 import User from '@/models/User'
 
