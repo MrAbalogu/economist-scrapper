@@ -1,7 +1,7 @@
 require('events').EventEmitter.prototype._maxListeners = 100;
 
 import puppeteer from 'puppeteer'
-import constants from 'utils/constants'
+import constants from '@/utils/constants'
 
 async function Scrapper(url = constants.baseUrl) {
   let posts = [],
