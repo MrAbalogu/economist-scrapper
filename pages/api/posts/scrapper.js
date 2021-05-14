@@ -1,6 +1,6 @@
 import dbConnect from '@/utils/dbConnect.js'
 import Scrapper from '@/services/scrapper.js'
-import { parsePosts } from '@/controllers/PostsController.js'
+// import { parsePosts } from '@/controllers/PostsController.js'
 import { verifyCookie } from '@/controllers/AuthController.js'
 
 dbConnect()
@@ -19,7 +19,8 @@ export default async (req, res) => {
         }
 
         const postsFromScrapper = await Scrapper()
-        const posts = await parsePosts(postsFromScrapper)
+        // const posts = await parsePosts(postsFromScrapper)
+        const posts = []
 
         res.status(200).json({ success: true, data: posts })
       } catch(error) {
