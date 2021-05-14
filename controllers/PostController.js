@@ -4,6 +4,8 @@ import Constants from '@/utils/constants'
 const siteUrl = Constants.baseUrl
 
 const parsePosts = async (postsToParse) => {
+  if(!postsToParse.length) return []
+
   await postsToParse.forEach( async (post) => {
     let postToParse = {
       url: null,
