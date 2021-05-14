@@ -12,7 +12,9 @@ const parsePosts = async (postsToParse) => {
       title: null
     }
 
-    postToParse.url = siteUrl + post.url.match(/href="([^"]*)/)[1]
+    const match = post.url.match(/href="([^"]*)/)[1] || ''
+
+    postToParse.url = siteUrl + match
     postToParse.title = post.title
 
     try {
