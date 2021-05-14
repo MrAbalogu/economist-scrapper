@@ -1,6 +1,6 @@
-import dbConnect from '../../utils/dbConnect'
-import { signIn } from '../../controllers/AuthController'
-import User from '../../models/User'
+import dbConnect from 'utils/dbConnect'
+import { signIn } from 'controllers/AuthController'
+import User from 'models/User'
 
 dbConnect()
 

@@ -1,8 +1,8 @@
 import { verify, sign } from 'jsonwebtoken'
 import cookie from 'cookie'
 import bcrypt from 'bcrypt'
-import Constants from '../utils/constants'
-import User from '../models/User'
+import Constants from 'utils/constants'
+import User from 'models/User'
 
 const secret = Constants.secret
 
