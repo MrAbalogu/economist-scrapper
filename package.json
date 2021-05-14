@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "chrome-aws-lambda": "^9.1.0",
     "cookie": "^0.4.1",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
