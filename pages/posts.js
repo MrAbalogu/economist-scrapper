@@ -6,14 +6,18 @@ import styles from '../styles/Home.module.css'
 
 export default function Posts() {
   const [posts, setPosts] = useState([]),
+        [fetched, setFetched] = useState(false),
         headline = "Post"
 
   function fetchPosts() {
+    setFetched(false)
     axios.get('/api/posts/scrapper', {withCredentials: true})
       .then((response) => {
+        setFetched(true)
         setPosts(response.data.data)
       })
       .catch((err) => {
+        setFetched(true)
         console.error(err)
 
         if(err.request.status === 401) Router.push('/auth')
@@ -34,6 +38,8 @@ export default function Posts() {
         <h1 className={styles.title}>
           Posts from Economist's Landingpage
         </h1>
+
+        {!fetched && <p>Fetching Posts...</p>}
 
         <div className={styles.grid}>
           {
