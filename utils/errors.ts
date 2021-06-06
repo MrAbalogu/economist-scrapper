@@ -21,3 +21,14 @@ export class AuthenticationError extends Error {
     Object.setPrototypeOf(this, DefaultError.prototype)
   }
 }
+
+export class ValidationError extends Error {
+  static STATUS_CODE = 401
+  name =  "AuthenticationError"
+
+  constructor(errorMessage: string) {
+    super(errorMessage)
+
+    Object.setPrototypeOf(this, DefaultError.prototype)
+  }
+}

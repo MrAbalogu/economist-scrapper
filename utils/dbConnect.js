@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose, { Collection } from "mongoose"
 
 const connection = {}
 
-async function dbConnect() {
+export async function dbConnect(url = process.env.MONGO_URI) {
   if(connection.isConnected) return
 
-  const db = await mongoose.connect(process.env.MONGO_URI, {
+  const db = await mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -15,4 +15,16 @@ async function dbConnect() {
   console.log(connection.isConnected)
 }
 
-export default dbConnect
+export async function closeDB() {
+  await mongoose.connection.dropDatabase()
+  await mongoose.connection.close()
+}
+
+export async function clearDB() {
+  const collections = mongoose.connection.collections
+
+  for (const key in collections) {
+    const collection = collections[key]
+    await collection.deleteMany()
+  }
+}

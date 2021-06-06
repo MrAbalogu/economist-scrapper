@@ -1,5 +1,3 @@
-require('events').EventEmitter.prototype._maxListeners = 100;
-
 // import puppeteer from 'puppeteer'
 import chromium from 'chrome-aws-lambda';
 import constants from '@/utils/constants'
