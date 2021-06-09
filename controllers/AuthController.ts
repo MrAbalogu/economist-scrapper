@@ -26,14 +26,15 @@ const signIn = async (user, password, res) => {
     }))
   }
 
-  throw new AuthenticationError()
+  return passwordMatch
 }
 
 const signUp = async (params) => {
   let user = await new User(params)
 
-  user.save((err) => {
-    if(err) throw new ValidationError(err)
+  await user.save((err) => {
+    if(err)
+      throw new ValidationError(err)
   })
 
   return user

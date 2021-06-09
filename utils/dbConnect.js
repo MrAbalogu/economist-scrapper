@@ -11,17 +11,19 @@ export async function dbConnect(url = process.env.MONGO_URI) {
     useCreateIndex: true
   })
 
-  connection.isConnected = db.connections[0].ready
-  console.log(connection.isConnected)
+  return db
 }
 
 export async function closeDB() {
   await mongoose.connection.dropDatabase()
   await mongoose.connection.close()
+  console.log("closing db...", mongoose.connection.readyState)
 }
 
-export async function clearDB() {
+export async function clearConnection() {
   const collections = mongoose.connection.collections
+
+  console.log("clearing db...")
 
   for (const key in collections) {
     const collection = collections[key]

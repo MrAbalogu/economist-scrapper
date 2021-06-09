@@ -6,7 +6,7 @@
     "dev": "next dev -p 1233",
     "build": "next build",
     "start": "next start",
-    "test": "jest --testEnvironment=node --runInBand"
+    "test": "jest"
   },
   "dependencies": {
     "async": "^3.2.0",

@@ -10,7 +10,7 @@ async function Scrapper(url = constants.baseUrl) {
     args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
-    headless: true,
+    headless: false,
     ignoreHTTPSErrors: true,
   })
   const page = await browser.newPage()

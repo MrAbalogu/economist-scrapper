@@ -1,4 +1,4 @@
-import dbConnect from '@/utils/dbConnect'
+import { dbConnect } from '@/utils/dbConnect'
 import { signIn } from '@/controllers/AuthController'
 import User from '@/models/User'
 

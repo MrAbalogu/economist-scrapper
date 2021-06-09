@@ -1,4 +1,4 @@
-import dbConnect from '@/utils/dbConnect.js'
+import { dbConnect } from '@/utils/dbConnect.js'
 import Post from '@/models/Post.js'
 import { verifyCookie } from '@/controllers/AuthController.js'
 
