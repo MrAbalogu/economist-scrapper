@@ -6,7 +6,7 @@
     "dev": "next dev -p 1233",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest --testRunner=jest-circus/runner"
   },
   "dependencies": {
     "async": "^3.2.0",
@@ -32,11 +32,12 @@
     "@types/react": "^17.0.5",
     "babel-jest": "^27.0.1",
     "jest": "^27.0.1",
+    "jest-circus": "^27.0.4",
     "mongodb-memory-server": "^6.9.6",
     "typescript": "^4.2.4"
   },
   "engines": {
-    "node": "14.12.0",
+    "node": "14.15.5",
     "npm": "7.7.6"
   }
 }
