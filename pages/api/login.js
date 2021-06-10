@@ -1,11 +1,11 @@
-import dbConnect from '@/utils/dbConnect'
-import { signIn } from '@/controllers/AuthController'
-import User from '@/models/User'
+import { dbConnect } from '../../utils/dbConnect'
+import { signIn } from '../../controllers/AuthController'
+import User from '../../models/User'
 
 dbConnect()
 
 export default async (req, res) => {
-  const { method }  = req
+  const { method } = req
 
   switch(method) {
     case "POST":

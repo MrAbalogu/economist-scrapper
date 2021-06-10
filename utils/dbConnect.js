@@ -1,18 +1,19 @@
-import mongoose from 'mongoose'
+import mongoose, { Collection } from "mongoose"
 
 const connection = {}
 
-async function dbConnect() {
+export async function dbConnect(url = process.env.MONGO_URI) {
   if(connection.isConnected) return
 
-  const db = await mongoose.connect(process.env.MONGO_URI, {
+  const db = await mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
   })
 
-  connection.isConnected = db.connections[0].ready
-  console.log(connection.isConnected)
+  console.log("connected db: ", db)
 }
 
-export default dbConnect
+export async function dbDisconnect() {
+  await mongoose.disconnect()
+}

@@ -1,8 +1,9 @@
 import { verify, sign } from 'jsonwebtoken'
 import cookie from 'cookie'
 import bcrypt from 'bcryptjs'
-import Constants from '@/utils/constants'
-import User from '@/models/User'
+import Constants from '../utils/constants'
+import User from '../models/User'
+import { ValidationError } from '../utils/errors';
 
 const secret = Constants.secret
 
@@ -31,8 +32,9 @@ const signIn = async (user, password, res) => {
 const signUp = async (params) => {
   let user = await new User(params)
 
-  user.save((err) => {
-    if(err) console.error('the error', err)
+  await user.save((err) => {
+    if(err)
+      throw new ValidationError(err)
   })
 
   return user

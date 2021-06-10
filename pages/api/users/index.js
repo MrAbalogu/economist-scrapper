@@ -1,5 +1,5 @@
-import dbConnect from '@/utils/dbConnect'
-import { signUp } from '@/controllers/AuthController'
+import { dbConnect } from '../../../utils/dbConnect'
+import { signUp } from '../../../controllers/AuthController'
 
 dbConnect()
 

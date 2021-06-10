@@ -1,8 +1,6 @@
-require('events').EventEmitter.prototype._maxListeners = 100;
-
 // import puppeteer from 'puppeteer'
 import chromium from 'chrome-aws-lambda';
-import constants from '@/utils/constants'
+import constants from '../utils/constants'
 
 async function Scrapper(url = constants.baseUrl) {
   let posts = [],
@@ -12,7 +10,7 @@ async function Scrapper(url = constants.baseUrl) {
     args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
-    headless: true,
+    headless: false,
     ignoreHTTPSErrors: true,
   })
   const page = await browser.newPage()
