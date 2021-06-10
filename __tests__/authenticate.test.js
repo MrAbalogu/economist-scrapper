@@ -24,6 +24,8 @@ describe("Authentication", () => {
 
       const users = await User.find({})
 
+      console.log("users: ", user, users)
+
       const userFromDB = await User.findOne({ email: userParams.email }).exec()
 
       expect(userFromDB.name).toBe(user.name)
