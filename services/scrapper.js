@@ -1,6 +1,6 @@
 // import puppeteer from 'puppeteer'
 import chromium from 'chrome-aws-lambda';
-import constants from '@/utils/constants'
+import constants from '../utils/constants'
 
 async function Scrapper(url = constants.baseUrl) {
   let posts = [],

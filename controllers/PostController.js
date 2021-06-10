@@ -1,5 +1,5 @@
-import Post from '@/models/Post'
-import Constants from '@/utils/constants'
+import Post from '../models/Post'
+import Constants from '../utils/constants'
 
 const siteUrl = Constants.baseUrl
 

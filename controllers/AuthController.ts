@@ -3,7 +3,7 @@ import cookie from 'cookie'
 import bcrypt from 'bcryptjs'
 import Constants from '../utils/constants'
 import User from '../models/User'
-import { AuthenticationError, ValidationError } from '../utils/errors';
+import { ValidationError } from '../utils/errors';
 
 const secret = Constants.secret
 

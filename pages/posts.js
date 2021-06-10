@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios'
 import Router from 'next/router'
 import Post from '@/components/Post'
-import styles from '@/styles/Home.module.css'
+import styles from '../styles/Home.module.css'
 
 export default function Posts() {
   const [posts, setPosts] = useState([]),
